@@ -1,22 +1,19 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:payment/models/authentication_request_model.dart';
 import 'package:payment/models/order_registration_model.dart';
 import 'package:payment/models/payment_reqeust_model.dart';
 import 'package:payment/modules/payment/cubit/state.dart';
-import 'package:payment/shared/network/dio.dart';
+import 'package:payment/core/network/dio.dart';
 
-import '../../../shared/components/constant.dart';
+import '../../../core/network/constant.dart';
 
 class PaymentCubit extends Cubit<PaymentStates> {
   PaymentCubit() : super(PaymentInitialStates());
   static PaymentCubit get(context) => BlocProvider.of(context);
   AuthenticationRequestModel? authTokenModel;
-
-// for authentication in paymob
   Future<void> getAuthToken() async {
     emit(PaymentAuthLoadingStates());
-    DioHelperPayment.postData(url: '/auth/tokens', data: {
+    DioHelperPayment.postData(url: ApiContest.getAuthToken, data: {
       'api_key': ApiContest.paymentApiKey,
     }).then((value) {
       authTokenModel = AuthenticationRequestModel.fromJson(value.data);
@@ -39,7 +36,7 @@ class PaymentCubit extends Cubit<PaymentStates> {
     required String phone,
   }) async {
     emit(PaymentOrderIdLoadingStates());
-    DioHelperPayment.postData(url: '/ecommerce/orders', data: {
+    DioHelperPayment.postData(url: ApiContest.getOrderId, data: {
       'auth_token': ApiContest.paymentFirstToken,
       "delivery_needed": "false",
       "amount_cents": price,
@@ -71,7 +68,7 @@ class PaymentCubit extends Cubit<PaymentStates> {
   ) async {
     emit(PaymentRequestTokenLoadingStates());
     DioHelperPayment.postData(
-      url: '/acceptance/payment_keys',
+      url: ApiContest.getPaymentRequest,
       data: {
         "auth_token": ApiContest.paymentFirstToken,
         "amount_cents": priceOrder,
@@ -112,7 +109,7 @@ class PaymentCubit extends Cubit<PaymentStates> {
 
   Future getRefCode() async {
     DioHelperPayment.postData(
-      url: '/acceptance/payments/pay',
+      url: ApiContest.getRefCode,
       data: {
         "source": {
           "identifier": "AGGREGATOR",

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:payment/modules/register/register_screen.dart';
-import 'package:payment/shared/network/dio.dart';
+import 'package:payment/core/network/dio.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

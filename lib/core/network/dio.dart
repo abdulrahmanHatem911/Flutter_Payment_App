@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:payment/shared/components/constant.dart';
+import 'package:payment/core/network/constant.dart';
 
 //Authentication Request ==>  https://accept.paymob.com/api/auth/tokens
 //Order Registration API ==> : https://accept.paymob.com/api/ecommerce/orders

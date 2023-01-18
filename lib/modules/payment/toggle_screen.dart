@@ -5,8 +5,8 @@ import 'package:payment/modules/payment/cubit/state.dart';
 import 'package:payment/modules/payment/ref_code_screen.dart';
 import 'package:payment/modules/payment/visa_screen.dart';
 import 'package:payment/modules/widgets/show_snack.dart';
-import 'package:payment/shared/components/component_screen.dart';
-import 'package:payment/shared/components/constant.dart';
+import 'package:payment/core/components/component_screen.dart';
+import 'package:payment/core/network/constant.dart';
 
 class ToggleScreen extends StatelessWidget {
   const ToggleScreen({Key? key}) : super(key: key);
@@ -60,7 +60,7 @@ class ToggleScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Image(
-                                image: NetworkImage(AppString.refCodeImage),
+                                image: NetworkImage(AppImages.refCodeImage),
                               ),
                               SizedBox(height: 15.0),
                               Text(
@@ -93,7 +93,7 @@ class ToggleScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: const [
                               Image(
-                                image: NetworkImage(AppString.visaImage),
+                                image: NetworkImage(AppImages.visaImage),
                               ),
                               Text(
                                 'Payment with visa',

@@ -3,8 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:payment/modules/register/register_screen.dart';
-import 'package:payment/shared/components/component_screen.dart';
-import 'package:payment/shared/components/constant.dart';
+import 'package:payment/core/components/component_screen.dart';
+import 'package:payment/core/network/constant.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class VisaScreen extends StatefulWidget {
@@ -53,7 +53,7 @@ class _VisaScreenState extends State<VisaScreen> {
             _toasterJavascriptChannel(context),
           },
           navigationDelegate: (NavigationRequest request) {
-            if (request.url.startsWith('https://www.youtube.com/')) {
+            if (request.url.startsWith('https://www.google.com/')) {
               print('blocking navigation to $request}');
               return NavigationDecision.prevent;
             }
